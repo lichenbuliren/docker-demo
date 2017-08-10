@@ -48,3 +48,15 @@ server {
   access_log off;
 }
 ```
+
+### 编译运行容器
+
+``` bash
+docker-compose up --build
+```
+
+具体其它用法，请查看对应的 API
+
+``` bash
+docker-compose -h
+```
