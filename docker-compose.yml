@@ -5,24 +5,20 @@ nginx:
   links:
     - "php"
   volumes: 
-    - ./code/:/opt/htdocs/code/
+    - /path/to/your/project/:/opt/htdocs/project/
 
 php:
   build: ./php
-  ports: 
-    - "9000:9000"
   links:
     - "mysql"
     - "redis"
   volumes:
-    - ./code/:/opt/htdocs/code/
+    - /path/to/your/project/:/opt/htdocs/project/
 
 mysql:
   build: ./mysql
-  ports:
-    - "3306:3306"
   environment:
-    MYSQL_ROOT_PASSWORD: 123456
+    MYSQL_ROOT_PASSWORD: your-mysql-password
 
 redis:
   build: ./redis

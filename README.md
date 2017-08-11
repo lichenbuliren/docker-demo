@@ -10,19 +10,19 @@ pip install -U docker-compose
 
 ### 修改映射源码目录 `docker-compose.yml` 文件中的 `volumes` 映射关系
 
-这里我们案例写的是 `./code/:/opt/htdocs/code/`,其中 ./code/ 可以替换成本地项目路径
+这里我们案例写的是 `./project/code/:/opt/htdocs/project/`,其中 `./project/code/` 可以替换成本地项目路径
 
 ### 配置自定义 `nginx` 配置
 
 在 `nginx/sites-enabled/` 下面新增对应项目的 `nginx` 配置
 
-例如新增一个 `web.conf` ：
+例如新增一个 `site.conf` ：
 
 ``` conf
 server {
   listen   80;
-  server_name  local.evaengine.com;
-  root  /opt/htdocs/web/public;
+  server_name  www.site.com;
+  root  /opt/htdocs/site/public;
   index index.php;
   try_files $uri $uri/ @rewrite;
   location @rewrite {
@@ -33,7 +33,7 @@ server {
       include fastcgi_params;
       fastcgi_pass   php:9000;
       fastcgi_index  index.php;
-      fastcgi_param  SCRIPT_FILENAME  /opt/htdocs/web/public/$fastcgi_script_name;
+      fastcgi_param  SCRIPT_FILENAME  /opt/htdocs/site/public/$fastcgi_script_name;
       fastcgi_param  APPLICATION_NAME evaengine;
   }
 }
@@ -42,7 +42,7 @@ server {
 server {
   listen   80;
   server_name  static.evaengine.com;
-  root  /opt/htdocs/web/public/static/;
+  root  /opt/htdocs/site/static/;
   add_header Access-Control-Allow-Origin *;
   index index.html index.htm;
   access_log off;
