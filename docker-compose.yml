@@ -5,24 +5,32 @@ nginx:
   links:
     - "php"
   volumes: 
+<<<<<<< HEAD
     - /Users/weirufeng/Work/meizu/svn/i18n.meizu.com/:/opt/htdocs/i18n.meizu.com/
+=======
+    - /path/to/your/project/:/opt/htdocs/project/
+>>>>>>> 42ca02a9e143b29cc97b071eedd04c763d33e2ef
 
 php:
   build: ./php
-  ports: 
-    - "9000:9000"
   links:
     - "mysql"
     - "redis"
   volumes:
+<<<<<<< HEAD
     - /Users/weirufeng/Work/meizu/svn/i18n.meizu.com/:/opt/htdocs/i18n.meizu.com/
+=======
+    - /path/to/your/project/:/opt/htdocs/project/
+>>>>>>> 42ca02a9e143b29cc97b071eedd04c763d33e2ef
 
 mysql:
   build: ./mysql
-  ports:
-    - "3306:3306"
   environment:
+<<<<<<< HEAD
     MYSQL_ROOT_PASSWORD: meizu.com
+=======
+    MYSQL_ROOT_PASSWORD: your-mysql-password
+>>>>>>> 42ca02a9e143b29cc97b071eedd04c763d33e2ef
 
 redis:
   build: ./redis
