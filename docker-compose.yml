@@ -5,7 +5,7 @@ nginx:
   links:
     - "php"
   volumes: 
-    - ./code/:/opt/htdocs/code/
+    - /Users/weirufeng/Work/meizu/svn/i18n.meizu.com/:/opt/htdocs/i18n.meizu.com/
 
 php:
   build: ./php
@@ -15,14 +15,14 @@ php:
     - "mysql"
     - "redis"
   volumes:
-    - ./code/:/opt/htdocs/code/
+    - /Users/weirufeng/Work/meizu/svn/i18n.meizu.com/:/opt/htdocs/i18n.meizu.com/
 
 mysql:
   build: ./mysql
   ports:
     - "3306:3306"
   environment:
-    MYSQL_ROOT_PASSWORD: 123456
+    MYSQL_ROOT_PASSWORD: meizu.com
 
 redis:
   build: ./redis

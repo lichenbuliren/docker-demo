@@ -2,7 +2,7 @@ FROM php:5.6-fpm
 
 ADD sources.list    /etc/apt/sources.list
 
-COPY redis.tgz /home/redis.tgz
+#COPY redis.tgz /home/redis.tgz
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install mysql mysqli pdo_mysql
 
-RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+#RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 RUN apt-get install -y \
-    #&& pecl install redis && docker-php-ext-enable redis \
+    && pecl install redis && docker-php-ext-enable redis \
     && docker-php-source delete \
     && apt-get clean; rm -r /var/lib/apt/lists/* /tmp/*
 
